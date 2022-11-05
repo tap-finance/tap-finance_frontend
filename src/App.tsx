@@ -3,6 +3,7 @@ import "./App.css";
 import { Navbar } from "./components/Navbar";
 import { configureChains, chain, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
+import NFTQueringTable from "./components/NFTQueringTable";
 
 const { chains, provider, webSocketProvider } = configureChains(
   [chain.mainnet, chain.polygon],
@@ -20,6 +21,7 @@ function App() {
     <WagmiConfig client={client}>
       <div className="App h-screen" style={{ background: "#10172A" }}>
         <Navbar />
+        <NFTQueringTable />
       </div>
     </WagmiConfig>
   );
