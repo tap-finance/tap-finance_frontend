@@ -28,16 +28,16 @@ const ConnectButton = () => {
   if (isConnected)
     return (
       <>
-        <div className="flex rounded-3xl border-2 mr-3 p-1">
-          <p className="">Subscribe</p>
+        <button className="flex rounded-3xl border-2 mr-3 px-3 bg-white">
+          <p className="text-zinc-900">Subscribe</p>
           <img
             className="w-5 h-5"
             style={{ marginTop: "3px", marginLeft: "5px" }}
             src={pushLogo}
             alt=""
           />
-        </div>
-        <p className="rounded-3xl border-2 mr-3 p-1">{chain?.name}</p>
+        </button>
+        <p className="rounded-3xl border-2 mr-3 px-3">{chain?.name}</p>
         <button onClick={() => disconnect()}>
           <div className="flex border-zinc-200 border-2 rounded-3xl p-2">
             {avatarImg && (
