@@ -1,19 +1,38 @@
 import React from "react";
 import "./App.css";
-import { Navbar } from "./components/navbar";
+import { Navbar } from "./components/NavBar/navbar";
+import "./App.css";
 
-import Table from "./components/Table";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import Pool from "./components/Pool/Pool";
+
+import Home from "./components/Home/Home";
+import TopVaultsPage from "./components/TopVaults/TopVaultsPage";
 
 function App() {
   return (
-    <div>
-      <div className="App h-screen" style={{ background: "#10172A" }}>
-        <Navbar />
-      </div>
-      <div className="App">
-        <Table />
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/"
+          element={
+            <div>
+              <Home />
+            </div>
+          }
+        />
+        <Route path="/top"
+          element={<TopVaultsPage/>}
+        />
+        <Route path="/pool"
+        element={<Pool />}
+        />
+      </Routes>
+    </Router >
   );
 }
 
