@@ -1,13 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
-    <div className="App">
-      <button className="btn btn-primary">One</button>
-      <button className="btn btn-secondary">Two</button>
-      <button className="btn btn-accent btn-outline">Three</button>
+    <div className="App h-screen" style={{ background: "#10172A" }}>
+      <Navbar />
     </div>
   );
 }
