@@ -1,17 +1,28 @@
-const NftSilo = () => {
+const NftLiquidityPool = () => {
   return (
     <div
-      className="grid grid-cols-6 gap-4 p-10"
+      className="flex flex-col items-center pt-16 text-zinc-100 pb-20 "
       style={{ background: "#10172A" }}
+      data-theme="dark"
     >
-      <div className="col-start-1 col-span-2">
-        <img className="w-1/2" src={require("./examplenft.png")} />
-        CryptoPunk
+      <div className="pb-7">
+        <p className="text-3xl">Liquidity pool for your NFT</p>
       </div>
+      <div className="flex" style={{ background: "#10172A" }}>
+        <div className="">
+          <img
+            className=" mr-7 rounded-xl border-2 mb-1"
+            src={require("./examplenft.png")}
+            alt=""
+            style={{ height: "100px" }}
+          />
+          CryptoPunk
+          <p style={{ fontSize: "12px" }}>ERC-721</p>
+          <p style={{ fontSize: "12px" }}>0x...xyz</p>
+        </div>
 
-      <div className="col-start-3 col-span-7">
         <div className="overflow-x-auto">
-          <table className="table w-full">
+          <table className="table">
             <thead>
               <tr>
                 <th>APY</th>
@@ -23,18 +34,18 @@ const NftSilo = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr className="hover">
                 <td>17.33%</td>
                 <td>
                   <div className="avatar-group -space-x-6">
                     <div className="avatar">
                       <div className="w-8">
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img alt="" src="https://placeimg.com/192/192/people" />
                       </div>
                     </div>
                     <div className="avatar">
                       <div className="w-8">
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img alt="" src="https://placeimg.com/192/192/people" />
                       </div>
                     </div>
                   </div>
@@ -46,18 +57,18 @@ const NftSilo = () => {
                   <b>Sudoswap</b>
                 </td>
               </tr>
-              <tr>
+              <tr className="hover">
                 <td>17.33%</td>
                 <td>
                   <div className="avatar-group -space-x-6">
                     <div className="avatar">
                       <div className="w-8">
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img alt="" src="https://placeimg.com/192/192/people" />
                       </div>
                     </div>
                     <div className="avatar">
                       <div className="w-8">
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img alt="" src="https://placeimg.com/192/192/people" />
                       </div>
                     </div>
                   </div>
@@ -70,18 +81,18 @@ const NftSilo = () => {
                   <b>Sudoswap</b>
                 </td>
               </tr>
-              <tr>
+              <tr className="hover">
                 <td>17.33%</td>
                 <td>
                   <div className="avatar-group -space-x-6">
                     <div className="avatar">
                       <div className="w-8">
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img alt="" src="https://placeimg.com/192/192/people" />
                       </div>
                     </div>
                     <div className="avatar">
                       <div className="w-8">
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img alt="" src="https://placeimg.com/192/192/people" />
                       </div>
                     </div>
                   </div>
@@ -102,4 +113,4 @@ const NftSilo = () => {
   );
 };
 
-export default NftSilo;
+export default NftLiquidityPool;
