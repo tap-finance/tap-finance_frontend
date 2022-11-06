@@ -15,7 +15,6 @@ const client = createClient({
 
 export const Navbar = () => {
   return (
-
     <WagmiConfig client={client}>
       <div className="navbar" style={{ background: "#1c2c58" }}>
         <div className="flex-1">
@@ -27,9 +26,9 @@ export const Navbar = () => {
               alt="logo"
             />
           </a>
-          <a href="/" style={{ paddingTop: "8px" }}>
+          {/* <a href="/" style={{ paddingTop: "8px" }}>
             <h2>Stake</h2>
-          </a>
+          </a> */}
         </div>
         <div className="flex-none">
           <ConnectButton />

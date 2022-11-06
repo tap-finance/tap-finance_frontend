@@ -13,9 +13,9 @@ export const Navbar = () => {
             alt="logo"
           />
         </a>
-        <a href="/" style={{ paddingTop: "8px" }}>
+        {/* <a href="/" style={{ paddingTop: "8px" }}>
           <h2>Stake</h2>
-        </a>
+        </a> */}
       </div>
       <div className="flex-none">
         <ConnectButton />

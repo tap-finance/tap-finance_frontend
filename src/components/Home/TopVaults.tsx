@@ -11,12 +11,16 @@ const TopVaults = () => {
   );
 
   return (
-    <div style={{ background: "#10172A" }}>
+    <div
+      style={{ background: "#10172A" }}
+      data-theme="dark"
+      className="text-gray-50 flex items-center flex-col"
+    >
       <AllTopVaults />
 
       <button
         onClick={handleOnClick}
-        className="btn btn-outline btn-info rounded"
+        className="btn btn-outline btn-info rounded-3xl my-3 "
       >
         View More
       </button>

@@ -62,7 +62,7 @@ const NftLiquidityPool = () => {
 
   return (
     <div
-      className="flex flex-col items-center pt-16 text-zinc-100 pb-20 "
+      className="flex flex-col items-center pt-16 text-zinc-100"
       style={{ background: "#10172A" }}
       data-theme="dark"
     >
@@ -115,6 +115,7 @@ const NftLiquidityPool = () => {
                     <th>TVL</th>
                     <th>Status</th>
                     <th>Service</th>
+                    <th>Stake</th>
                   </tr>
                 </thead>
 
@@ -138,12 +139,23 @@ const NftLiquidityPool = () => {
                           </span>
                         </td>
 
-                        <td className="flex">
-                          <img src={greenCircle} alt="" className="w-2 mr-1" />
-                          <p>Live</p>
+                        <td>
+                          <div className="flex">
+                            <img
+                              src={greenCircle}
+                              alt=""
+                              className="w-2 mr-1"
+                            />
+                            <p>Live</p>
+                          </div>
                         </td>
                         <td>
                           <b>Sudoswap</b>
+                        </td>
+                        <td>
+                          <button className="btn btn-outline btn-warning rounded-3xl">
+                            Stake
+                          </button>
                         </td>
                       </tr>
                     ))
