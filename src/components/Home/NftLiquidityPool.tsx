@@ -75,7 +75,7 @@ const NftLiquidityPool = () => {
               {nft?.media[0].gateway.includes(".mp4") ? (
                 <iframe
                   title="nftvid"
-                  className=" aspect-video  mr-7 rounded-xl border-2 mb-1"
+                  className=" aspect-square  mr-7 rounded-xl border-2 mb-1"
                   src={nft?.media[0].gateway}
                   style={{ height: "100px" }}
                 ></iframe>
