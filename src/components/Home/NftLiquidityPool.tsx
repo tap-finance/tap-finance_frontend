@@ -5,8 +5,10 @@ import { Alchemy, Network } from "alchemy-sdk";
 import { useNetwork } from "wagmi";
 import { InfinitySpin } from "react-loader-spinner";
 import { shortenWalletAddress } from "../../utils/shortenWallet";
+import axios from "axios";
 
 const NftLiquidityPool = () => {
+  const [dataDune, setDataDune] = useState([] as any);
   const { address, isConnected } = useAccount();
   const [nfts, setNfts] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +32,6 @@ const NftLiquidityPool = () => {
     const runMain = async () => {
       try {
         const data = await main();
-        console.log(data);
         setNfts(data);
         setIsLoading(false);
       } catch (error) {
@@ -38,12 +39,25 @@ const NftLiquidityPool = () => {
       }
     };
     runMain();
+
+    axios({
+      method: "get",
+      url: "/sudoswap_analytics_24hr/5"
+    }).then((apiResponse: any) => {
+      setIsLoading(true);
+
+      // process the response
+      const products = apiResponse.data;
+      console.log(products);
+
+      // setDataDune(apiResponse.json(products));
+      setDataDune(products?.result.rows);
+      setIsLoading(false);
+    });
+
     // eslint-disable-next-line
   }, [address]);
 
-  console.log(
-    nfts?.ownedNfts.map((nft: any) => console.log(nft?.media[0].gateway))
-  );
   return (
     <div
       className="flex flex-col items-center pt-16 text-zinc-100 pb-20 "
@@ -55,7 +69,7 @@ const NftLiquidityPool = () => {
       </div>
 
       {nfts?.ownedNfts.map((nft: any) => (
-        <div className="flex pb-10">
+        <div key={nft?.tokenId} className="flex pb-10">
           <div className="">
             {nft?.media[0].gateway.includes(".mp4") ? (
               <iframe
@@ -96,46 +110,27 @@ const NftLiquidityPool = () => {
                   <th>Service</th>
                 </tr>
               </thead>
+
               <tbody>
-                <tr className="hover">
-                  <td>17.33%</td>
+                {!dataDune ? (
+                  <InfinitySpin width="200" color="#4fa94d" />
+                ) : (
+                  dataDune?.map((d: any) => (
+                    <tr className="hover">
+                      <td>{(d?.tvl * 0.2).toFixed(2)}%</td>
 
-                  <td>November 14 2022</td>
-                  <td>$38,820</td>
-                  <td className="flex">
-                    <img src={greenCircle} alt="" className="w-2 mr-1" />
-                    <p>Live</p>
-                  </td>
-                  <td>
-                    <b>Sudoswap</b>
-                  </td>
-                </tr>
-                <tr className="hover">
-                  <td>17.33%</td>
-
-                  <td>November 14 2022</td>
-                  <td>$38,820</td>
-                  <td className="flex">
-                    <img src={greenCircle} alt="" className="w-2 mr-1" />
-                    <p>Live</p>
-                  </td>
-                  <td>
-                    <b>Sudoswap</b>
-                  </td>
-                </tr>
-                <tr className="hover">
-                  <td>17.33%</td>
-
-                  <td>November 14 2022</td>
-                  <td>$38,820</td>
-                  <td className="flex">
-                    <img src={greenCircle} alt="" className="w-2 mr-1" />
-                    <p>Live</p>
-                  </td>
-                  <td>
-                    <b>Sudoswap</b>
-                  </td>
-                </tr>
+                      <td>November 14 2022</td>
+                      <td>${d?.tvl.toFixed(2)}</td>
+                      <td className="flex">
+                        <img src={greenCircle} alt="" className="w-2 mr-1" />
+                        <p>Live</p>
+                      </td>
+                      <td>
+                        <b>Sudoswap</b>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
             <button className="btn success mt-2 w-full bg-sky-700 text-stone-50">
