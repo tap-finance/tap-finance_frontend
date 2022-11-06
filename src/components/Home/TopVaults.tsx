@@ -12,9 +12,9 @@ const TopVaults = () => {
     >
       <AllTopVaults />
 
-      <Link to={"/top"}>
-        <button className="btn btn-primary">View More</button>
-      </Link>
+      {/* <Link to={"/top"}> */}
+      <button className="btn btn-primary rounded-3xl my-3">View More</button>
+      {/* </Link> */}
     </div>
   );
 };
