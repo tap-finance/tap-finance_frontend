@@ -7,6 +7,8 @@ import { InfinitySpin } from "react-loader-spinner";
 import { shortenWalletAddress } from "../../utils/shortenWallet";
 import axios from "axios";
 import { FaEthereum } from "react-icons/fa";
+import { FaShareAlt } from "react-icons/fa";
+import lens from "../icons/lens.png";
 
 const NftLiquidityPool = () => {
   const [dataDune, setDataDune] = useState([] as any);
@@ -116,6 +118,9 @@ const NftLiquidityPool = () => {
                     <th>Status</th>
                     <th>Service</th>
                     <th>Stake</th>
+                    <th>
+                      <FaShareAlt />
+                    </th>
                   </tr>
                 </thead>
 
@@ -155,6 +160,15 @@ const NftLiquidityPool = () => {
                         <td>
                           <button className="btn btn-outline btn-warning rounded-3xl">
                             Stake
+                          </button>
+                        </td>
+                        <td>
+                          <button>
+                            <img
+                              src={lens}
+                              alt=""
+                              className="w-8 bg-slate-50 rounded-lg"
+                            />
                           </button>
                         </td>
                       </tr>

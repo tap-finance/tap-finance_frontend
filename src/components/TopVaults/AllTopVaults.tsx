@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaEthereum } from "react-icons/fa";
+import { FaEthereum, FaShareAlt } from "react-icons/fa";
 import { useAccount, useNetwork } from "wagmi";
 import TopVaults from "../Home/TopVaults";
 import greenCircle from "../icons/green-circle.svg";
 
 import { Navbar } from "../NavBar/navbar";
+import lens from "../icons/lens.png";
 
 const AllTopVaults = () => {
   const [dataDune, setDataDune] = useState([] as any);
@@ -47,6 +48,9 @@ const AllTopVaults = () => {
             <th>TVL</th>
             <th>Service</th>
             <th>Stake</th>
+            <th>
+              <FaShareAlt />
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -94,6 +98,15 @@ const AllTopVaults = () => {
               <td>
                 <button className="btn btn-outline btn-warning rounded-3xl">
                   Stake
+                </button>
+              </td>
+              <td>
+                <button>
+                  <img
+                    src={lens}
+                    alt=""
+                    className="w-8 bg-slate-50 rounded-lg"
+                  />
                 </button>
               </td>
             </tr>
