@@ -84,7 +84,7 @@ const AllTopVaults = () => {
                     style={{ paddingRight: "5px", marginTop: "3px" }}
                   />
 
-                  {d?.tvl.toFixed(2)}
+                  {(d?.tvl / 100).toFixed(2)}
                 </span>
               </td>
 
