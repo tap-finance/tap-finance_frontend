@@ -8,6 +8,7 @@ import axios from "axios";
 import { FaEthereum } from "react-icons/fa";
 import { FaShareAlt } from "react-icons/fa";
 import lensLogo from "../icons/lens.png";
+import group from "../icons/Group.png";
 import { Link } from "react-router-dom";
 import { ethers } from "ethers";
 
@@ -132,12 +133,6 @@ const NftLiquidityPool = () => {
               </p>
               <div className="flex  text-cyan-600" style={{ fontSize: "10px" }}>
                 Powered by QuickNode
-                <img
-                  className="w-3 h-3"
-                  style={{ marginTop: "3px", marginLeft: "3px" }}
-                  src={"ensLogo"}
-                  alt=""
-                />
               </div>
             </div>
 
@@ -191,9 +186,28 @@ const NftLiquidityPool = () => {
                           <b>Sudoswap</b>
                         </td>
                         <td>
-                          <button className="btn btn-outline btn-warning rounded-3xl">
+                          {/* Put this part before </body> tag */}
+                          <input
+                            type="checkbox"
+                            id="my-modal"
+                            className="modal-toggle"
+                          />
+                          <div className="modal">
+                            <div className="modal-box">
+                              <img src={group} alt="" />
+                              <div className="modal-action">
+                                <label htmlFor="my-modal" className="btn">
+                                  Yei!
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <label
+                            htmlFor="my-modal"
+                            className="btn btn-outline btn-warning rounded-3xl"
+                          >
                             Stake
-                          </button>
+                          </label>
                         </td>
                         <td>
                           <label htmlFor="my-modal" className="cursor-pointer">
@@ -203,8 +217,6 @@ const NftLiquidityPool = () => {
                               className="w-8 bg-slate-50 rounded-lg"
                             />
                           </label>
-
-                          {/* Put this part before </body> tag */}
                           <input
                             type="checkbox"
                             id="my-modal"
@@ -229,6 +241,7 @@ const NftLiquidityPool = () => {
                                 to={{
                                   pathname: `https://lenster.xyz/u/${lens?.profiles.items[0].handle}`
                                 }}
+                                target="_blank"
                               >
                                 <div className="modal-action">
                                   <label htmlFor="my-modal" className="btn">
@@ -241,8 +254,15 @@ const NftLiquidityPool = () => {
                                   </label>
                                 </div>
                               </Link>
+                              <div className="modal-action">
+                                <label htmlFor="my-modal" className="btn">
+                                  Nope
+                                </label>
+                              </div>
                             </div>
                           </div>
+
+                          {/* Put this part before </body> tag */}
                         </td>
                       </tr>
                     ))

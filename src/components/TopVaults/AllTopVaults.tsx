@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { FaEthereum, FaShareAlt } from "react-icons/fa";
 
 import lens from "../icons/lens.png";
+import img1 from "../icons/image.png";
+import img2 from "../icons/image2.png";
+import img3 from "../icons/image3.png";
 
 const AllTopVaults = () => {
   const [dataDune, setDataDune] = useState([] as any);
@@ -46,25 +49,17 @@ const AllTopVaults = () => {
                 <div className="avatar-group -space-x-6">
                   <div className="avatar">
                     <div className="w-12">
-                      <img alt="" src="https://placeimg.com/192/192/people" />
+                      <img alt="" src={img1} />
                     </div>
                   </div>
                   <div className="avatar">
                     <div className="w-12">
-                      <img alt="" src="https://placeimg.com/192/192/tech" />
+                      <img alt="" src={img2} />
                     </div>
                   </div>
                   <div className="avatar">
                     <div className="w-12">
-                      <img alt="" src="https://placeimg.com/192/192/nature" />
-                    </div>
-                  </div>
-                  <div className="avatar">
-                    <div className="w-12">
-                      <img
-                        alt=""
-                        src="https://placeimg.com/192/192/architecture"
-                      />
+                      <img alt="" src={img3} />
                     </div>
                   </div>
                 </div>

@@ -5,29 +5,16 @@ import { useEnsAvatar, useDisconnect, useNetwork } from "wagmi";
 import { shortenWalletAddress } from "../utils/shortenWallet";
 import ensLogo from "./icons/ens.png";
 import pushLogo from "./icons/pushlogo.png";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 
 import { useState } from "react";
 import * as PushAPI from "@pushprotocol/restapi";
-import * as ethers from "ethers";
-
-
-import { useWeb3React } from "@web3-react/core";
-
-
-
-const PK = 'b2fbf61696dc06be98ab92a0e9f0a68a6dd30c490f9b5a204ed285e2da91972f'; // channel private key
-const Pkey = `0x${PK}`;
-
-const channel = '0xD8634C39BBFd4033c0d3289C4515275102423681';
-
 
 const ConnectButton = () => {
-
   const [connected, setConnected] = useState("Subscribe");
   const onSuccessNotify = () => {
     //toast("You're Subscribed!");
-  }
+  };
 
   const { address, isConnected } = useAccount();
   const { data: ensName } = useEnsName({ address });
@@ -35,57 +22,36 @@ const ConnectButton = () => {
   const { data: signer } = useSigner();
   const _signer: any = signer;
 
-
-  const _address: any = address;
-
-
-  const { account, library } = useWeb3React();
-
-
   const { connect } = useConnect({
     connector: new InjectedConnector()
   });
   const { disconnect } = useDisconnect();
 
-
-  const {
-    data: avatarImg,
-    isError,
-    isLoading
-  } = useEnsAvatar({
+  const { data: avatarImg } = useEnsAvatar({
     addressOrName: `${ensName}`
   });
 
-
-  const { chain, chains } = useNetwork();
- 
-
-
+  const { chain } = useNetwork();
 
   const subscribe = async () => {
-    console.log(address)
-    console.log('hell yeah');
-
+    console.log(address);
+    console.log("hell yeah");
 
     await PushAPI.channels.subscribe({
       signer: _signer,
-      channelAddress: 'eip155:5:0x555AdeA9bD94AB65970ADa6586F59289A7E510EB', // channel address in CAIP
-      userAddress: 'eip155:5:' + address,// user address in CAIP
+      channelAddress: "eip155:5:0x555AdeA9bD94AB65970ADa6586F59289A7E510EB", // channel address in CAIP
+      userAddress: "eip155:5:" + address, // user address in CAIP
       onSuccess: () => {
-        console.log('opt in success');
+        console.log("opt in success");
         onSuccessNotify();
         setConnected("Subscribed!");
       },
       onError: () => {
-        console.error('opt in error');
+        console.error("opt in error");
       },
-      env: 'staging'
-    })
-
-
-  }
-
-
+      env: "staging"
+    });
+  };
 
   console.log(chain?.name);
 
@@ -104,8 +70,11 @@ const ConnectButton = () => {
           pauseOnHover
           theme="light"
         />
-         
-        <button onClick={subscribe} className="flex rounded-3xl border-2 mr-3 px-3 bg-white">
+
+        <button
+          onClick={subscribe}
+          className="flex rounded-3xl border-2 mr-3 px-3 bg-white"
+        >
           <p className="text-zinc-900"> {connected}</p>
           <img
             className="w-5 h-5"
@@ -141,7 +110,6 @@ const ConnectButton = () => {
               </div>
             </div>
           </div>
-
         </button>
       </>
     );
