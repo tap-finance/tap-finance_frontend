@@ -7,11 +7,13 @@ import { shortenWalletAddress } from "../../utils/shortenWallet";
 import axios from "axios";
 import { FaEthereum } from "react-icons/fa";
 import { FaShareAlt } from "react-icons/fa";
-import lens from "../icons/lens.png";
+import lensLogo from "../icons/lens.png";
 import { Link } from "react-router-dom";
+import { ethers } from "ethers";
 
 const NftLiquidityPool = () => {
   const [dataDune, setDataDune] = useState([] as any);
+  const [lens, setLens] = useState([] as any);
   const { address } = useAccount();
   const [nfts, setNfts] = useState<any>();
 
@@ -21,7 +23,24 @@ const NftLiquidityPool = () => {
   };
   const alchemy = new Alchemy(config);
 
+  //function to fetch nfts by collection
+  const fetchCollection = async () => {
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://distinguished-clean-violet.ethereum-goerli.discover.quiknode.pro/56ee6fbaed5befcee61d235903b2ff1308d1a8e6/"
+    );
+    provider.connection.headers = { "x-qn-api-version": 1 };
+    const collection = await provider.send("qn_fetchNFTsByCollection", [
+      {
+        method: address,
+        page: 1,
+        perPage: 10
+      }
+    ]);
+    return collection;
+  };
+
   useEffect(() => {
+    fetchCollection();
     const main = async () => {
       // Get all NFTs
       const response = await alchemy.nft.getNftsForOwner(`${address}`);
@@ -33,6 +52,7 @@ const NftLiquidityPool = () => {
       try {
         const data = await main();
         setNfts(data);
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -49,6 +69,18 @@ const NftLiquidityPool = () => {
 
       // setDataDune(apiResponse.json(products));
       setDataDune(products?.result.rows);
+    });
+
+    axios({
+      method: "get",
+      url: "/lens_profile_data/0xC5E07308710f669d9A6bc926de95f80b69D0C68A"
+    }).then((apiResponse: any) => {
+      // process the response
+      const data = apiResponse.data;
+      setLens(data);
+      console.log(lens?.profiles.items[0].handle);
+
+      // setDataDune(apiResponse.json(products));
     });
 
     // eslint-disable-next-line
@@ -164,13 +196,53 @@ const NftLiquidityPool = () => {
                           </button>
                         </td>
                         <td>
-                          <button>
+                          <label htmlFor="my-modal" className="cursor-pointer">
                             <img
-                              src={lens}
+                              src={lensLogo}
                               alt=""
                               className="w-8 bg-slate-50 rounded-lg"
                             />
-                          </button>
+                          </label>
+
+                          {/* Put this part before </body> tag */}
+                          <input
+                            type="checkbox"
+                            id="my-modal"
+                            className="modal-toggle"
+                          />
+                          <div className="modal">
+                            <div className="modal-box">
+                              <h3 className="font-bold text-lg">
+                                Share this collection of NFTs on Lens Protocol!
+                              </h3>
+                              <p className="py-4">
+                                Hi{" "}
+                                <span className="text-lime-600">
+                                  {lens?.profiles.items[0].handle}!
+                                </span>
+                              </p>
+                              <p className="py-2 " style={{ fontSize: "13px" }}>
+                                Click on the botton below to share it with Lens
+                                Protocol,
+                              </p>
+                              <Link
+                                to={{
+                                  pathname: `https://lenster.xyz/u/${lens?.profiles.items[0].handle}`
+                                }}
+                              >
+                                <div className="modal-action">
+                                  <label htmlFor="my-modal" className="btn">
+                                    <span className="mr-2">Share</span>
+                                    <img
+                                      src={lensLogo}
+                                      className="w-8"
+                                      alt=""
+                                    />
+                                  </label>
+                                </div>
+                              </Link>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     ))
