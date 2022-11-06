@@ -1,31 +1,112 @@
 import React from "react";
-import { useAccount, useConnect, useEnsName } from "wagmi";
+import { useAccount, useConnect, useEnsName, useSigner } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { useEnsAvatar, useDisconnect, useNetwork } from "wagmi";
 import { shortenWalletAddress } from "../utils/shortenWallet";
 import ensLogo from "./icons/ens.png";
 import pushLogo from "./icons/pushlogo.png";
+import { ToastContainer, toast } from 'react-toastify';
+
+import { useState } from "react";
+import * as PushAPI from "@pushprotocol/restapi";
+import * as ethers from "ethers";
+
+
+import { useWeb3React } from "@web3-react/core";
+
+
+
+const PK = 'b2fbf61696dc06be98ab92a0e9f0a68a6dd30c490f9b5a204ed285e2da91972f'; // channel private key
+const Pkey = `0x${PK}`;
+
+const channel = '0xD8634C39BBFd4033c0d3289C4515275102423681';
+
 
 const ConnectButton = () => {
+
+  const [connected, setConnected] = useState("Subscribe");
+  const onSuccessNotify = () => {
+    //toast("You're Subscribed!");
+  }
+
   const { address, isConnected } = useAccount();
   const { data: ensName } = useEnsName({ address });
+
+  const { data: signer } = useSigner();
+  const _signer: any = signer;
+
+
+  const _address: any = address;
+
+
+  const { account, library } = useWeb3React();
+
+
   const { connect } = useConnect({
     connector: new InjectedConnector()
   });
   const { disconnect } = useDisconnect();
 
-  const { data: avatarImg } = useEnsAvatar({
+
+  const {
+    data: avatarImg,
+    isError,
+    isLoading
+  } = useEnsAvatar({
     addressOrName: `${ensName}`
   });
-  const { chain } = useNetwork();
+
+
+  const { chain, chains } = useNetwork();
+ 
+
+
+
+  const subscribe = async () => {
+    console.log(address)
+    console.log('hell yeah');
+
+
+    await PushAPI.channels.subscribe({
+      signer: _signer,
+      channelAddress: 'eip155:5:0x555AdeA9bD94AB65970ADa6586F59289A7E510EB', // channel address in CAIP
+      userAddress: 'eip155:5:' + address,// user address in CAIP
+      onSuccess: () => {
+        console.log('opt in success');
+        onSuccessNotify();
+        setConnected("Subscribed!");
+      },
+      onError: () => {
+        console.error('opt in error');
+      },
+      env: 'staging'
+    })
+
+
+  }
+
+
 
   console.log(chain?.name);
 
   if (isConnected)
     return (
       <>
-        <button className="flex rounded-3xl border-2 mr-3 px-3 bg-white">
-          <p className="text-zinc-900">Subscribe</p>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+         
+        <button onClick={subscribe} className="flex rounded-3xl border-2 mr-3 px-3 bg-white">
+          <p className="text-zinc-900"> {connected}</p>
           <img
             className="w-5 h-5"
             style={{ marginTop: "3px", marginLeft: "5px" }}
@@ -60,6 +141,7 @@ const ConnectButton = () => {
               </div>
             </div>
           </div>
+
         </button>
       </>
     );

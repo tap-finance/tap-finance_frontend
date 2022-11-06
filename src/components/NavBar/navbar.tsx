@@ -1,4 +1,4 @@
-import ConnectButton from "./ConnectButton";
+import ConnectButton from "../ConnectButton";
 import tapFinanceLogo from "../icons/tapFinanceLogo.png";
 import { configureChains, chain, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
