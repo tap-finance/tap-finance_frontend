@@ -55,7 +55,7 @@ const AllTopVaults = () => {
         </thead>
         <tbody>
           {dataDune?.map((d: any) => (
-            <tr>
+            <tr className="hover">
               <th className="active">
                 <div className="avatar-group -space-x-6">
                   <div className="avatar">

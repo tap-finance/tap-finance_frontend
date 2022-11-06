@@ -10,6 +10,7 @@ import Pool from "./components/Pool/Pool";
 import Home from "./components/Home/Home";
 import TopVaultsPage from "./components/TopVaults/TopVaultsPage";
 import { Navbar } from "./components/navbar";
+import RouterNav from "./components/Router/RouterNav";
 
 const { chains, provider, webSocketProvider } = configureChains(
   [chain.mainnet, chain.polygon],
@@ -24,19 +25,9 @@ const client = createClient({
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <WagmiConfig client={client}>
-              <Home />
-            </WagmiConfig>
-          }
-        />
-      </Routes>
-    </Router>
+    <WagmiConfig client={client}>
+      <RouterNav />
+    </WagmiConfig>
   );
 }
 

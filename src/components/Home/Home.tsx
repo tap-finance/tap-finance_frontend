@@ -18,10 +18,7 @@ function Home() {
       <Liquidity />
       <NftLiquidityPool />
       <TopVaults />
-      {/* <TopVaults />
-      <PopularCollection />
-      <Nav2 />
-      <Footer /> */}
+
       <Footer />
     </div>
   );

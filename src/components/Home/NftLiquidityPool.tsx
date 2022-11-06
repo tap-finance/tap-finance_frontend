@@ -9,6 +9,7 @@ import axios from "axios";
 import { FaEthereum } from "react-icons/fa";
 import { FaShareAlt } from "react-icons/fa";
 import lens from "../icons/lens.png";
+import { Link } from "react-router-dom";
 
 const NftLiquidityPool = () => {
   const [dataDune, setDataDune] = useState([] as any);
@@ -176,9 +177,11 @@ const NftLiquidityPool = () => {
                   )}
                 </tbody>
               </table>
-              <button className="btn success mt-2 w-full bg-sky-700 text-stone-50">
-                + Create a new pool on tapp.finance
-              </button>
+              <Link to={"/pool"}>
+                <button className="btn success mt-2 w-full bg-sky-700 text-stone-50">
+                  + Create a new pool on tapp.finance
+                </button>
+              </Link>
             </div>
           </div>
         ))
