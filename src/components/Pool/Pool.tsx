@@ -1,3 +1,5 @@
+import "./Pool.css";
+
 const Pool = () => {
   return (
     <div className="h-screen" style={{ background: "#10172A" }}>
@@ -17,7 +19,7 @@ const Pool = () => {
                   <div className="col-span-20 sm:col-span-20">
                     <label
                       htmlFor="first-name"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium"
                     >
                       Contract Address
                     </label>
@@ -26,14 +28,14 @@ const Pool = () => {
                       name="first-name"
                       id="first-name"
                       autoComplete="given-name"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-black-700 inputBox "
                     />
                   </div>
 
                   <div className="col-span-2 sm:col-span-20">
                     <label
                       htmlFor="email-address"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium"
                     >
                       Pool Name
                     </label>
@@ -42,13 +44,13 @@ const Pool = () => {
                       name="email-address"
                       id="email-address"
                       autoComplete="email"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm inputBox"
                     />
                   </div>
                   <div className="col-span-6 sm:col-span-4">
                     <label
                       htmlFor="email-address"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium "
                     >
                       LP Token Symbol
                     </label>
@@ -57,7 +59,7 @@ const Pool = () => {
                       name="email-address"
                       id="email-address"
                       autoComplete="email"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm justify-center"
+                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm justify-center inputBox"
                     />
                   </div>
                 </div>
