@@ -13,14 +13,14 @@ const HomeHeader = () => {
           forward.
         </p>
       </div>
-      <div className="pt-16">
-        <p className="text-black text-opacity-0 text-3xl">
+      <div className="pr-16">
+        <p className="text-black text-opacity-0 text-3xl ">
           #1 One-Stop access for providing NFT liquidity
         </p>
         <img
-          className=""
+          className="rounded-lg border-2"
           style={{ height: "auto", minWidth: "600px" }}
-          src={require("../icons/tap.logo.png")}
+          src={require("../icons/heroImage.png")}
           alt="drop"
         />
       </div>
