@@ -1,37 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaEthereum, FaShareAlt } from "react-icons/fa";
-import { useAccount, useNetwork } from "wagmi";
-import TopVaults from "../Home/TopVaults";
-import greenCircle from "../icons/green-circle.svg";
 
-import { Navbar } from "../NavBar/navbar";
 import lens from "../icons/lens.png";
 
 const AllTopVaults = () => {
   const [dataDune, setDataDune] = useState([] as any);
-  const { address, isConnected } = useAccount();
-  const [nfts, setNfts] = useState<any>();
-  const [isLoading, setIsLoading] = useState(false);
-  const { chain, chains } = useNetwork();
 
   useEffect(() => {
-    setIsLoading(true);
-
     axios({
       method: "get",
       url: "/sudoswap_analytics_tvl/5"
     }).then((apiResponse: any) => {
-      setIsLoading(true);
-
       // process the response
       const products = apiResponse.data;
       console.log(products);
 
       // setDataDune(apiResponse.json(products));
       setDataDune(products?.result.rows);
-
-      setIsLoading(false);
     });
 
     // eslint-disable-next-line
@@ -60,22 +46,25 @@ const AllTopVaults = () => {
                 <div className="avatar-group -space-x-6">
                   <div className="avatar">
                     <div className="w-12">
-                      <img src="https://placeimg.com/192/192/people" />
+                      <img alt="" src="https://placeimg.com/192/192/people" />
                     </div>
                   </div>
                   <div className="avatar">
                     <div className="w-12">
-                      <img src="https://placeimg.com/192/192/tech" />
+                      <img alt="" src="https://placeimg.com/192/192/tech" />
                     </div>
                   </div>
                   <div className="avatar">
                     <div className="w-12">
-                      <img src="https://placeimg.com/192/192/nature" />
+                      <img alt="" src="https://placeimg.com/192/192/nature" />
                     </div>
                   </div>
                   <div className="avatar">
                     <div className="w-12">
-                      <img src="https://placeimg.com/192/192/architecture" />
+                      <img
+                        alt=""
+                        src="https://placeimg.com/192/192/architecture"
+                      />
                     </div>
                   </div>
                 </div>

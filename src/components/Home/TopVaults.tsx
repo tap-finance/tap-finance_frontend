@@ -1,6 +1,3 @@
-import { useCallback } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
-
 import AllTopVaults from "../TopVaults/AllTopVaults";
 
 const TopVaults = () => {

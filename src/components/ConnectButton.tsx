@@ -14,14 +14,10 @@ const ConnectButton = () => {
   });
   const { disconnect } = useDisconnect();
 
-  const {
-    data: avatarImg,
-    isError,
-    isLoading
-  } = useEnsAvatar({
+  const { data: avatarImg } = useEnsAvatar({
     addressOrName: `${ensName}`
   });
-  const { chain, chains } = useNetwork();
+  const { chain } = useNetwork();
 
   console.log(chain?.name);
 

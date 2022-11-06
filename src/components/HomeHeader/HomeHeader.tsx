@@ -1,5 +1,3 @@
-import Home from "../Home/Home";
-
 const HomeHeader = () => {
   return (
     <div className="flex">

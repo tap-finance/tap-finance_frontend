@@ -2,7 +2,6 @@ import greenCircle from "../icons/green-circle.svg";
 import React, { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { Alchemy, Network } from "alchemy-sdk";
-import { useNetwork } from "wagmi";
 import { InfinitySpin } from "react-loader-spinner";
 import { shortenWalletAddress } from "../../utils/shortenWallet";
 import axios from "axios";
@@ -13,10 +12,8 @@ import { Link } from "react-router-dom";
 
 const NftLiquidityPool = () => {
   const [dataDune, setDataDune] = useState([] as any);
-  const { address, isConnected } = useAccount();
+  const { address } = useAccount();
   const [nfts, setNfts] = useState<any>();
-  const [isLoading, setIsLoading] = useState(false);
-  const { chain, chains } = useNetwork();
 
   const config = {
     apiKey: "QDjqTD3DZFOCTxTFPIDsRpt047P_37HO",
@@ -25,7 +22,6 @@ const NftLiquidityPool = () => {
   const alchemy = new Alchemy(config);
 
   useEffect(() => {
-    setIsLoading(true);
     const main = async () => {
       // Get all NFTs
       const response = await alchemy.nft.getNftsForOwner(`${address}`);
@@ -37,7 +33,6 @@ const NftLiquidityPool = () => {
       try {
         const data = await main();
         setNfts(data);
-        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -48,16 +43,12 @@ const NftLiquidityPool = () => {
       method: "get",
       url: "/sudoswap_analytics_24hr/5"
     }).then((apiResponse: any) => {
-      setIsLoading(true);
-
       // process the response
       const products = apiResponse.data;
       console.log(products);
 
       // setDataDune(apiResponse.json(products));
       setDataDune(products?.result.rows);
-
-      setIsLoading(false);
     });
 
     // eslint-disable-next-line
@@ -84,7 +75,7 @@ const NftLiquidityPool = () => {
               {nft?.media[0].gateway.includes(".mp4") ? (
                 <iframe
                   title="nftvid"
-                  className=" aspect-video aspect-square  mr-7 rounded-xl border-2 mb-1"
+                  className=" aspect-video  mr-7 rounded-xl border-2 mb-1"
                   src={nft?.media[0].gateway}
                   style={{ height: "100px" }}
                 ></iframe>
@@ -107,6 +98,15 @@ const NftLiquidityPool = () => {
               <p className="text-zinc-400" style={{ fontSize: "12px" }}>
                 {shortenWalletAddress(nft?.contract.address)}
               </p>
+              <div className="flex  text-cyan-600" style={{ fontSize: "10px" }}>
+                Powered by QuickNode
+                <img
+                  className="w-3 h-3"
+                  style={{ marginTop: "3px", marginLeft: "3px" }}
+                  src={"ensLogo"}
+                  alt=""
+                />
+              </div>
             </div>
 
             <div className="overflow-x-auto">

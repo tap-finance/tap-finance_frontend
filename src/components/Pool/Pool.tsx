@@ -1,5 +1,3 @@
-import { Navbar } from "../NavBar/navbar";
-
 const Pool = () => {
   return (
     <div className="h-screen" style={{ background: "#10172A" }}>
