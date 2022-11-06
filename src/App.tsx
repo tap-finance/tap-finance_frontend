@@ -9,7 +9,7 @@ import Pool from "./components/Pool/Pool";
 
 import Home from "./components/Home/Home";
 import TopVaultsPage from "./components/TopVaults/TopVaultsPage";
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/navbar";
 
 const { chains, provider, webSocketProvider } = configureChains(
   [chain.mainnet, chain.polygon],
