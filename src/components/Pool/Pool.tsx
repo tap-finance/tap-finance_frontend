@@ -5,7 +5,7 @@ const Pool = () => {
     <div className="h-screen" style={{ background: "#10172A" }}>
       <div className="mt-10 sm:mt-0">
         <div className="flex justify-center items-center">
-          <p className="text-7xl">Create a pool on tap.finance</p>
+          <p className="text-3xl">Create a pool on tap.finance</p>
         </div>
 
         <div
